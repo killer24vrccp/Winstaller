@@ -1,5 +1,3 @@
-import re
-import subprocess
 import sys
 
 from PySide6.QtGui import QIcon, QStandardItem, QStandardItemModel
@@ -22,6 +20,10 @@ class Main(QMainWindow):
         self.show()
 
     def go_search_app(self):
+        import re
+        from PySide6.QtGui import QStandardItemModel, QStandardItem
+        import subprocess
+
         app_name = self.ui.searchApp.text().strip()
 
         if not app_name:
@@ -38,24 +40,34 @@ class Main(QMainWindow):
 
             lines = result.stdout.splitlines()
 
+            # Trouve l'en-tête et la ligne de séparation
             try:
-                start_index = next(i for i, line in enumerate(lines) if re.match(r'^-+$', line.strip()))
-                table_lines = lines[start_index + 1:]
+                header_index = next(
+                    i for i, line in enumerate(lines) if re.match(r'^\s*Nom\s+ID\s+Version\s+Source\s*$', line))
+                separator_index = header_index + 1
+                table_lines = lines[separator_index + 1:]
             except StopIteration:
                 print("⚠️ No results table found.")
                 return
 
-            table_only = [line for line in table_lines if line.strip() and not re.match(r'^[^a-zA-Z]*$', line)]
+            # Longueurs de colonnes (à ajuster selon ton format exact)
+            name_width = 27
+            id_width = 20
+            version_width = 10
+            # Source = reste
 
-            # Create the table model
+            # Crée le modèle
             model = QStandardItemModel()
             model.setHorizontalHeaderLabels(["Name", "ID", "Version", "Source"])
 
-            for line in table_only:
-                name = line[:28].strip()
-                app_id = line[28:60].strip()
-                version = line[60:74].strip()
-                source = line[74:].strip()
+            for line in table_lines:
+                if not line.strip():
+                    continue
+
+                name = line[0:26].strip()  # Jusqu'à colonne ID
+                app_id = line[26:46].strip()  # Jusqu'à Version
+                version = line[46:56].strip()  # Jusqu'à Source
+                source = line[56:].strip()  # Le reste
 
                 model.appendRow([
                     QStandardItem(name),
@@ -64,7 +76,6 @@ class Main(QMainWindow):
                     QStandardItem(source),
                 ])
 
-            # Apply the model to the QTableView
             self.ui.appView.setModel(model)
             self.ui.appView.resizeColumnsToContents()
 
