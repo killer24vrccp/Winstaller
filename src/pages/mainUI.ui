@@ -34,12 +34,19 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit"/>
+          <widget class="QLineEdit" name="searchApp"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="go">
+           <property name="text">
+            <string>Go</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
        <item>
-        <widget class="QColumnView" name="columnView"/>
+        <widget class="QTableView" name="appView"/>
        </item>
        <item>
         <widget class="QFrame" name="frame_2">

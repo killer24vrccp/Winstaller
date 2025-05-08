@@ -15,10 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QColumnView, QFrame,
-    QGridLayout, QHBoxLayout, QLabel, QLineEdit,
+from PySide6.QtWidgets import (QApplication, QCheckBox, QFrame, QGridLayout,
+    QHBoxLayout, QHeaderView, QLabel, QLineEdit,
     QListView, QMainWindow, QPushButton, QSizePolicy,
-    QSpacerItem, QVBoxLayout, QWidget)
+    QSpacerItem, QTableView, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -42,18 +42,23 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.label)
 
-        self.lineEdit = QLineEdit(self.frame)
-        self.lineEdit.setObjectName(u"lineEdit")
+        self.searchApp = QLineEdit(self.frame)
+        self.searchApp.setObjectName(u"searchApp")
 
-        self.horizontalLayout.addWidget(self.lineEdit)
+        self.horizontalLayout.addWidget(self.searchApp)
+
+        self.go = QPushButton(self.frame)
+        self.go.setObjectName(u"go")
+
+        self.horizontalLayout.addWidget(self.go)
 
 
         self.verticalLayout.addLayout(self.horizontalLayout)
 
-        self.columnView = QColumnView(self.frame)
-        self.columnView.setObjectName(u"columnView")
+        self.appView = QTableView(self.frame)
+        self.appView.setObjectName(u"appView")
 
-        self.verticalLayout.addWidget(self.columnView)
+        self.verticalLayout.addWidget(self.appView)
 
         self.frame_2 = QFrame(self.frame)
         self.frame_2.setObjectName(u"frame_2")
@@ -196,6 +201,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"WinStaller", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Search", None))
+        self.go.setText(QCoreApplication.translate("MainWindow", u"Go", None))
         self.import_2.setText(QCoreApplication.translate("MainWindow", u"Import", None))
         self.export_2.setText(QCoreApplication.translate("MainWindow", u"Export", None))
         self.searchUpdate.setText(QCoreApplication.translate("MainWindow", u"Search Update", None))
