@@ -1,0 +1,5 @@
+[2025-05-08 01:25:09] === Début de l'installation des applications ===
+[2025-05-08 01:25:09] Démarrage de l'installation de Adobe.Acrobat.Reader.64-bit
+[2025-05-08 01:25:11] Échec : Adobe.Acrobat.Reader.64-bit non installé.
+Erreur : Command '['winget', 'install', '--id', 'Adobe.Acrobat.Reader.64-bit', '--silent', '--accept-package-agreements', '--accept-source-agreements']' returned non-zero exit status 2316632107.
+[2025-05-08 01:25:11] Démarrage de l'installation de Microsoft.Office

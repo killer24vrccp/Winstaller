@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="Black">
+    <option name="sdkName" value="Python 3.8 (Winstaller)" />
+  </component>
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="81ddafe9-38f0-43e9-801b-cc141f73652c" />
   </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (Winstaller)" project-jdk-type="Python SDK" />
 </project>
